@@ -14,5 +14,5 @@ if [ -e /etc/redhat-release ]; then
 else
     sudo apt update
     #sudo apt install -y python3-venv gcc python3-dev libffi-dev libssl-dev
-    sudo apt install -y python3-venv
+    sudo apt install -y python3.9-venv
 fi
