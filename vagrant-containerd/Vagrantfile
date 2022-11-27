@@ -4,11 +4,11 @@
 VAGRANTFILE_API_VERSION = "2"
 
 server = {
-  "Nnode01" =>  { :ip => "192.168.160.11", :cpus => 2, :mem => "2048"},
-  "Nnode02" =>  { :ip => "192.168.160.12", :cpus => 2, :mem => "2048"},
-  "Nnode03" =>  { :ip => "192.168.160.13", :cpus => 2, :mem => "2048"},
-  "Nnode04" =>  { :ip => "192.168.160.14", :cpus => 2, :mem => "2048"},
-  "Nmaster" =>  { :ip => "192.168.160.10", :cpus => 8, :mem => "2048"},
+  "node01" =>  { :ip => "192.168.160.11", :cpus => 2, :mem => "2048"},
+  "node02" =>  { :ip => "192.168.160.12", :cpus => 2, :mem => "2048"},
+  "node03" =>  { :ip => "192.168.160.13", :cpus => 2, :mem => "2048"},
+  "node04" =>  { :ip => "192.168.160.14", :cpus => 2, :mem => "2048"},
+  "master" =>  { :ip => "192.168.160.10", :cpus => 8, :mem => "2048"},
 }
  
 
@@ -25,8 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.customize ["modifyvm", :id, "--memory", info[:mem] ]
         node.customize ["modifyvm", :id, "--cpus", info[:cpus] ]
         node.customize ["modifyvm", :id, "--hwvirtex", "on" ]
-	node.ssh.password="123456"
-        if hostname == "Nmaster" 
+        if hostname == "master" 
                 override.vm.provision "file", source: "../outputs/", destination: "/tmp/outputs"
         end #end if
         override.vm.provision "shell" do |s| 
